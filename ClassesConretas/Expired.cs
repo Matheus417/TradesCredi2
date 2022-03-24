@@ -4,6 +4,7 @@ namespace TesteCredit.ClassesConretas
 {
     class Expired : ICategory
     {
+        private const int QTDAYSEXPIRED = 30;
         IDataProcessing _inputData;
 
         public Expired(IDataProcessing InputData)
@@ -13,7 +14,7 @@ namespace TesteCredit.ClassesConretas
 
         public string ProcessInputData()
         {
-            if ((_inputData.ReferenceDate - _inputData.Trade.NextPaymentDate).Days > 30)
+            if ((_inputData.ReferenceDate - _inputData.Trade.NextPaymentDate).Days > QTDAYSEXPIRED)
             {
                 return "EXPIRED";
             }

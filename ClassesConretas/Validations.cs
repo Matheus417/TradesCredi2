@@ -12,6 +12,11 @@ namespace TesteCredit.ClassesConretas
 {
     static class Validations
     {
+        private const int NUMBERPARAMETERSDEFAULT = 3;
+        private const int NUMBERPARAMETERSISEXPOSED = 4;
+        private const string EXIT = "exit";
+        private const string RESULTAOK = "ok";
+
         public static bool validateDate(string data)
         {
             Regex regex = new Regex(@"^([0]?[0-9]|[1][0-2])[.\/-]([0]?[1-9]|[1|2][0-9]|[3][0|1])[.\/-]([0-9]{4}|[0-9]{2})$");
@@ -44,7 +49,7 @@ namespace TesteCredit.ClassesConretas
             if (wa_trades == null)
                 return false;
 
-            if (wa_trades.Length < 3)
+            if (wa_trades.Length < NUMBERPARAMETERSDEFAULT)
                 return false;
 
             string ws_valor = wa_trades[0];
@@ -72,10 +77,10 @@ namespace TesteCredit.ClassesConretas
             if (wa_trades == null)
                 return false;
 
-            if (wa_trades.Length < 4)
+            if (wa_trades.Length < NUMBERPARAMETERSISEXPOSED)
                 return false;
 
-            string ws_Exposed = wa_trades[3];
+            string ws_Exposed = wa_trades[NUMBERPARAMETERSISEXPOSED - 1];
 
             if (!validateExposed(ws_Exposed))
                 return false;
@@ -97,12 +102,12 @@ namespace TesteCredit.ClassesConretas
 
         public static bool validateOutput(string exit)
         {
-            return exit.ToLower() == "exit";
+            return exit.ToLower() == EXIT;
         }
 
         public static bool validateResult(string Ok)
         {
-            return Ok.ToLower() == "ok";
+            return Ok.ToLower() == RESULTAOK;
         }
     }
 }

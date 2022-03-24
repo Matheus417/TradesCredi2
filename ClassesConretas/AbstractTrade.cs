@@ -8,6 +8,9 @@ namespace TesteCredit.ClassesConretas
 {
     public abstract class AbstractTrade
     {
+        private const int VALUE = 0;
+        private const int CLIENTSECTOR = 1;
+        private const int NEXTPAYMENTDATE = 2;
         protected double value;
         protected string clientSector;
         protected DateTime nextPaymentDate;
@@ -19,9 +22,9 @@ namespace TesteCredit.ClassesConretas
             trades = parameters.Split(' ');
             if (TestParameters(parameters))
             {
-                value = double.Parse(trades[0]);
-                clientSector = trades[1];
-                nextPaymentDate = DateTime.Parse(trades[2]);
+                value = double.Parse(trades[VALUE]);
+                clientSector = trades[CLIENTSECTOR];
+                nextPaymentDate = DateTime.Parse(trades[NEXTPAYMENTDATE]);
             }
         }
 

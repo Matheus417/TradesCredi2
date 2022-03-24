@@ -5,8 +5,8 @@ namespace TesteCredit.ClassesConretas
     class HighRisk : ICategory
     {
         IDataProcessing _inputData;
-        private double _amountLimit = 1000000;
-        private string _sector = "Private";
+        private const double AMOUNTLIMIT = 1000000;
+        private const string SECTOR = "Private";
 
 
         public HighRisk(IDataProcessing InputData)
@@ -16,7 +16,7 @@ namespace TesteCredit.ClassesConretas
 
         public string ProcessInputData()
         {
-            if ((_inputData.Trade.Value > _amountLimit) && (_inputData.Trade.ClientSector.ToLower() == _sector.ToLower()))
+            if ((_inputData.Trade.Value > AMOUNTLIMIT) && (_inputData.Trade.ClientSector.ToLower() == SECTOR.ToLower()))
             {
                 return "HIGHRISK";
             }

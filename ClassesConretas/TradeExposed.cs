@@ -18,7 +18,7 @@ namespace TesteCredit.ClassesConretas
         {
             _tradeBase = wTrade;
             _isPoliticallyExposed = false;
-            if (trades[3].ToLower() == "true")
+            if (trades[NumberParameters - 1].ToLower() == "true")
                 _isPoliticallyExposed = true;
         }
 
