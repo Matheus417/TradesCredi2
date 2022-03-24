@@ -76,6 +76,8 @@ namespace TesteCredit
                     while (!wb_tradeValid)
                     {
                         Console.WriteLine("Enter space separated, 1st enter the trade amount, 2nd the customer sector \"Public\" or \"Private\" and 3rd in mm/dd/yyyy format the date of the next pending payment");
+                        Console.WriteLine("if you want to know if you are a politically exposed person type \"True\" or \"False\"");
+
                         string ws_ReadTrade = Console.ReadLine();
 
                         wb_exit = Validations.validateOutput(ws_ReadTrade);
@@ -85,18 +87,19 @@ namespace TesteCredit
                             break;
                         }
 
-                        Trade wTrade = new Trade(ws_ReadTrade);
+                        AbstractTrade wTrade = ConstructorTrades.ContruirTrades(ws_ReadTrade);
 
-                        wb_tradeValid = wTrade.TradeValid;
+                        wb_tradeValid = (wTrade != null) && (wTrade.TradeValid);
 
                         if (wb_tradeValid)
                         {
                             InputData wInputData = new InputData();
                             wInputData.ReferenceDate = wdt_referenceDate;
                             wInputData.NumberPortfolio = numberPortfolio;
-                            wInputData.Trade = wTrade;
+                            wInputData.Trade = (ITrade)wTrade;
 
                             List<ICategory> ListCategoriesPrecedence = new List<ICategory>();
+                            ListCategoriesPrecedence.Add(new Pep(wInputData));
                             ListCategoriesPrecedence.Add(new Expired(wInputData));
                             ListCategoriesPrecedence.Add(new HighRisk(wInputData));
                             ListCategoriesPrecedence.Add(new MediumRisk(wInputData));

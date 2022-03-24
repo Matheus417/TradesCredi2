@@ -32,20 +32,19 @@ namespace TesteCredit.ClassesConretas
             }
             return false;
         }
+
+        public static bool validateExposed(string ws_Exposed)
+        {
+            return (ws_Exposed.ToLower() == "true") || (ws_Exposed.ToLower() == "false");
+        }
         public static bool validTrade(string ws_trade)
         {
-            string[] wa_trades;
+            string[] wa_trades = SplitTrades(ws_trade);
 
-            try
-            {
-                wa_trades = ws_trade.Split(' ');
-            }
-            catch
-            {
+            if (wa_trades == null)
                 return false;
-            }
 
-            if (wa_trades.Length != 3)
+            if (wa_trades.Length < 3)
                 return false;
 
             string ws_valor = wa_trades[0];
@@ -62,6 +61,38 @@ namespace TesteCredit.ClassesConretas
                 return false;
 
             return true;
+        }
+        public static bool validTradeExposed(string ws_trade)
+        {
+            if (!validTrade(ws_trade))
+                return false;
+
+            string[] wa_trades = SplitTrades(ws_trade);
+
+            if (wa_trades == null)
+                return false;
+
+            if (wa_trades.Length < 4)
+                return false;
+
+            string ws_Exposed = wa_trades[3];
+
+            if (!validateExposed(ws_Exposed))
+                return false;
+
+            return true;
+        }
+
+        public static string[] SplitTrades(string trades)
+        {
+            try
+            {
+                return trades.Split(' ');
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static bool validateOutput(string exit)
