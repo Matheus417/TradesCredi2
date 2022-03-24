@@ -75,8 +75,8 @@ namespace TesteCredit
                     wb_tradeValid = false;
                     while (!wb_tradeValid)
                     {
-                        Console.WriteLine("Enter space separated, 1st enter the trade amount, 2nd the customer sector \"Public\" or \"Private\" and 3rd in mm/dd/yyyy format the date of the next pending payment");
-                        Console.WriteLine("if you want to know if you are a politically exposed person type \"True\" or \"False\"");
+                        Console.WriteLine("Enter space separated, 1st enter the trade amount, 2nd the customer sector \"Public\" or \"Private\" and 3rd in mm/dd/yyyy format the date of the next pending payment.");
+                        Console.WriteLine("If you want to know if you are a politically exposed person type \"True\" or \"False\".");
 
                         string ws_ReadTrade = Console.ReadLine();
 
